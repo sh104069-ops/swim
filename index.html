@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a4f7a">
+<title>みずあそび チャレンジ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
 
+  <!-- タイトル -->
+  <section id="screen-title" class="screen active">
+    <div class="panel">
+      <h1 class="title"><span class="wave">〰</span>みずあそび チャレンジ<span class="wave">〰</span></h1>
+      <p class="lead">あそびたい ゲームを えらぼう!</p>
+      <div class="menu-grid">
+        <button class="menu-btn scan c-swim" data-go="swimSelect">
+          <span class="icon">🏊</span>
+          <span class="name">およぎゲーム</span>
+          <span class="desc">じゃまものを よけて<br>どこまで およげるかな?</span>
+        </button>
+        <button class="menu-btn scan c-dive" data-action="dive">
+          <span class="icon">🤿</span>
+          <span class="name"><ruby>潜水<rt>せんすい</rt></ruby>ゲーム</span>
+          <span class="desc">ルーレットの きょりで<br>ぴったり とまろう!</span>
+        </button>
+        <button class="menu-btn scan c-fish" data-action="fish">
+          <span class="icon">🎣</span>
+          <span class="name"><ruby>釣<rt>つ</rt></ruby>りゲーム</span>
+          <span class="desc">うきが しずんだら<br>タイミングよく ひこう!</span>
+        </button>
+      </div>
+      <button class="sub-btn scan" data-go="settings">⚙️ せってい</button>
+      <p class="hint">マウス・タッチ・スイッチ(スペース/エンター)で あそべます。Esc キーで メニューに もどります。</p>
+    </div>
+  </section>
+
+  <!-- 泳法えらび -->
+  <section id="screen-swimSelect" class="screen">
+    <div class="panel">
+      <h2 class="screen-title">およぎかたを えらぼう</h2>
+      <div class="stroke-grid">
+        <button class="stroke-btn scan" data-stroke="crawl">
+          <canvas width="160" height="160" data-stroke="crawl"></canvas>
+          <span class="name">クロール</span><span class="best"></span>
+        </button>
+        <button class="stroke-btn scan" data-stroke="breast">
+          <canvas width="160" height="160" data-stroke="breast"></canvas>
+          <span class="name"><ruby>平泳<rt>ひらおよ</rt></ruby>ぎ</span><span class="best"></span>
+        </button>
+        <button class="stroke-btn scan" data-stroke="fly">
+          <canvas width="160" height="160" data-stroke="fly"></canvas>
+          <span class="name">バタフライ</span><span class="best"></span>
+        </button>
+        <button class="stroke-btn scan" data-stroke="back">
+          <canvas width="160" height="160" data-stroke="back"></canvas>
+          <span class="name"><ruby>背泳<rt>せおよ</rt></ruby>ぎ</span><span class="best"></span>
+        </button>
+      </div>
+      <div class="setting-group wide">
+        <h3>そうさの しかた</h3>
+        <div class="opts" data-key="swimControl">
+          <button class="opt scan" data-val="mouse">🖱️ マウス・タッチ</button>
+          <button class="opt scan" data-val="switch1">🔘 スイッチ1こ(むきを かえる)</button>
+          <button class="opt scan" data-val="switch2">🔘🔘 スイッチ2こ(ひだり・みぎ)</button>
+        </div>
+        <p class="note">スイッチ2こ … ひだり:スペース または ←  /  みぎ:エンター または →</p>
+      </div>
+      <button class="sub-btn scan" data-go="title">← もどる</button>
+    </div>
+  </section>
+
+  <!-- せってい -->
+  <section id="screen-settings" class="screen">
+    <div class="panel">
+      <h2 class="screen-title">⚙️ せってい</h2>
+      <div class="settings-grid">
+        <div class="setting-group">
+          <h3>オートスキャン(スイッチで メニューを えらぶ)</h3>
+          <div class="opts" data-key="scan">
+            <button class="opt scan" data-val="true">オン</button>
+            <button class="opt scan" data-val="false">オフ</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <h3>スキャンの はやさ</h3>
+          <div class="opts" data-key="scanSpeed">
+            <button class="opt scan" data-val="1">はやい</button>
+            <button class="opt scan" data-val="1.5">ふつう</button>
+            <button class="opt scan" data-val="2.5">ゆっくり</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <h3>スイッチの れんぞくおし ふせぎ</h3>
+          <div class="opts" data-key="debounce">
+            <button class="opt scan" data-val="0.3">0.3びょう</button>
+            <button class="opt scan" data-val="0.6">0.6びょう</button>
+            <button class="opt scan" data-val="1">1びょう</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <h3>おと</h3>
+          <div class="opts" data-key="sound">
+            <button class="opt scan" data-val="true">オン</button>
+            <button class="opt scan" data-val="false">オフ</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <h3><ruby>潜水<rt>せんすい</rt></ruby>ゲームの レベル</h3>
+          <div class="opts" data-key="diveLevel">
+            <button class="opt scan" data-val="1">1 はた+めもり</button>
+            <button class="opt scan" data-val="2">2 5mごとの めもり</button>
+            <button class="opt scan" data-val="3">3 めもり なし</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <h3><ruby>釣<rt>つ</rt></ruby>りゲームの むずかしさ</h3>
+          <div class="opts" data-key="fishLevel">
+            <button class="opt scan" data-val="easy">やさしい</button>
+            <button class="opt scan" data-val="normal">ふつう</button>
+            <button class="opt scan" data-val="hard">むずかしい</button>
+          </div>
+        </div>
+      </div>
+      <button class="sub-btn scan" data-go="title">← もどる</button>
+    </div>
+  </section>
+
+  <!-- ゲーム画面 -->
+  <section id="screen-game" class="screen">
+    <div id="stage"><canvas id="game-canvas"></canvas></div>
+    <button id="btn-quit" class="quit-btn">✕ やめる</button>
+  </section>
+
+  <!-- けっか -->
+  <div id="overlay" class="overlay">
+    <div class="result-card">
+      <h2 id="result-title"></h2>
+      <div id="result-body"></div>
+      <div class="result-btns">
+        <button id="btn-retry" class="big-btn scan">🔁 もういちど</button>
+        <button id="btn-menu" class="big-btn home scan">🏠 メニュー</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
